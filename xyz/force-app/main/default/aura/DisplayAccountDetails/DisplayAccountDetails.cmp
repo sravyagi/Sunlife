@@ -1,0 +1,49 @@
+<aura:component controller="RetrieveAccountDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	  <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="AccountList" type="Account[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <lightning:card iconName="standard:work_capacity_usage" title="Account Details">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-text-title_caps" scope="col">
+                        <div class="slds-truncate" title="File Name">Name</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div class="slds-truncate" title="File Name">Owner Name</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div class="slds-truncate" title="File Name">Phone</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div class="slds-truncate" title="File Name">Website</div>
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <div class="slds-truncate" title="File Name">AnnualRevenue</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration  items="{!v.AccountList}" var="con">
+                    <tr class="slds-hint-parent">
+                        <td data-label="File Name">
+                            <lightning:formattedUrl value="{!'/' + recordId}" tooltip="Opportunity" label="{!con.Name}" target="_blank" />
+                        </td>
+                        <td data-label="File Name">
+                            <div class="slds-truncate" title="File Name">{!con.OwnerId}</div>  
+                        </td>
+                        <td data-label="File Name">
+                            <div class="slds-truncate" title="File Name">{!con.Phone}</div>  
+                        </td>
+                        <td data-label="File Name">
+                            <div class="slds-truncate" title="File Name">{!con.Website}</div>  
+                        </td>
+                         <td data-label="File Name">
+                            <div class="slds-truncate" title="File Name">{!con.AnnualRevenue}</div>  
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+</aura:component>
